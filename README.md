@@ -38,7 +38,7 @@ The program uses the following datasets:
   - Count of claims for each `Claim_Type` and `Disposition`.
 - **Airport-Level Analysis**: The program identifies airports with more than 10 million enplanements and lists them along with their respective percentage of claims. These insights are stored in the results file for further analysis.
 
-## Results File: [CaseStudy_Solution-results](CaseStudy_Solution-results.html)
+## Results File: [CaseStudy_Solution-results](output.pdf)
 
 The results of all steps, including data previews, transformations, and final analysis, are stored in an HTML file named `CaseStudy_Solution-results.html`. This file contains:
 - Tables showing initial data from the `claimsraw`, `enplanement2017`, and `boarding2013_2016` datasets.
@@ -47,8 +47,6 @@ The results of all steps, including data previews, transformations, and final an
 - Results of data cleaning and transformation steps (e.g., fixing dates, handling missing values).
 - Summarized insights such as the total number of enplanements, claims, and analysis on claims by airport.
 
-You can view the output in the file after running the program in **SAS Studio** or your local environment. The file is located in the `/home/u62293126/SQL/case_study/` directory as `CaseStudy_Solution-results.html`. 
-
 ## Notes
-- Ensure that all required datasets are present in the `/home/u62293126/SQL/case_study` directory for successful execution.
+- Ensure that all required datasets are present in the `/home/user/SQL/case_study` directory for successful execution.
 - The program is organized into sections, beginning with data exploration, followed by cleaning, preparation, and analysis, to provide a clear structure for understanding the process flow.
