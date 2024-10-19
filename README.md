@@ -1,8 +1,7 @@
-# SAS_SQL
 
 ## Overview
 
-This SAS program is designed to access, explore, prepare, and analyze data from claims and enplanement records. It processes and cleans the data, performs various transformations, and generates insightful reports by combining multiple datasets. The final results provide an analysis of the percentage of claims for each airport based on enplanements.
+This SAS program is designed to access, explore, prepare, and analyze claims and enplanement data. The program processes and cleans the data, performs various transformations, and generates insightful reports by combining multiple datasets. The final results are saved in an HTML file (`CaseStudy_Solution-results.html`), which captures the output and tables generated during the analysis.
 
 ## Data Sources
 
@@ -15,35 +14,41 @@ The program uses the following datasets:
 
 ### 1. Access and Explore Data
 - **Library Definition**: The `libname` statement defines the `cs` library to access SAS datasets from the `case_study` folder.
-- **Initial Data Inspection**: The program retrieves and prints the first 10 rows of the `claimsraw`, `enplanement2017`, and `boarding2013_2016` datasets using `PROC SQL`.
-- **Column Attributes Report**: It fetches and prints metadata about columns (name, type, length) for the claims and enplanement datasets.
-- **Distinct Values**: The code extracts distinct values from specific columns such as `Claim_Site`, `Disposition`, `Claim_Type`, `Date_Received`, and `Incident_Date`.
+- **Initial Data Inspection**: The program retrieves and prints the first 10 rows of the `claimsraw`, `enplanement2017`, and `boarding2013_2016` datasets using `PROC SQL`. The results of these queries, including table previews, are stored in the `CaseStudy_Solution-results.html` file.
+- **Column Attributes Report**: It fetches and prints metadata about columns (name, type, length) for the claims and enplanement datasets. This metadata is outputted to the results HTML file for review.
+- **Distinct Values**: The program extracts distinct values from specific columns such as `Claim_Site`, `Disposition`, `Claim_Type`, `Date_Received`, and `Incident_Date`. The distinct values are shown in the results HTML file.
 
 ### 2. Data Preparation
-- **Remove Duplicates**: The program creates a deduplicated dataset from `claimsraw`.
-- **Date Corrections**: Fixes incorrect dates in the `Date_Received` column where the incident date is after the received date by incrementing the year.
-- **Replace Missing Values**: Replaces missing airport codes with "Unknown" and cleans columns like `Claim_Type`, `Claim_Site`, and `Disposition` by handling null or inconsistent values.
-- **Case and Formatting**: Formats monetary amounts using the DOLLAR format and adjusts case (uppercase/lowercase) for state, county, and city names.
+- **Remove Duplicates**: A deduplicated dataset is created from `claimsraw`, and the results are displayed in the `CaseStudy_Solution-results.html` file.
+- **Date Corrections**: The program fixes incorrect dates in the `Date_Received` column where the incident date is after the received date by incrementing the year. These transformations and the affected records are presented in the results file.
+- **Replace Missing Values**: Missing airport codes are replaced with "Unknown", and other columns like `Claim_Type`, `Claim_Site`, and `Disposition` are cleaned. The cleaned data is shown in the results HTML file.
+- **Case and Formatting**: The program applies appropriate formats (e.g., DOLLAR format for monetary amounts) and corrects the case for state, county, and city names. These formatting changes are documented in the results file.
 
 ### 3. Create Views and Final Tables
-- **Total Claims by Airport**: The `TotalClaims` view aggregates claim counts by airport and year.
-- **Total Enplanements**: The `TotalEnplanements` view concatenates the `enplanement2017` and `boarding2013_2016` datasets.
-- **Claims by Airport**: Combines claims and enplanement data into a `ClaimsByAirport` table, calculating the percentage of claims relative to enplanements for each airport and year.
+- **Total Claims by Airport**: The `TotalClaims` view aggregates claim counts by airport and year. The summarized results are included in the `CaseStudy_Solution-results.html` file.
+- **Total Enplanements**: The `TotalEnplanements` view concatenates the `enplanement2017` and `boarding2013_2016` datasets, and this is shown in the results file.
+- **Claims by Airport**: Combines claims and enplanement data into a `ClaimsByAirport` table, calculating the percentage of claims relative to enplanements for each airport and year. The final table is outputted to the HTML file for review.
 
 ### 4. Data Analysis and Reporting
-- **Summary Statistics**: Generates summary statistics such as:
+- **Summary Statistics**: The following statistics are calculated and output to the `CaseStudy_Solution-results.html` file:
   - Total enplanements across all years.
   - Total number of claims.
   - Average time (in days) between the incident date and when the claim was received.
   - Number of claims with missing or unknown airport codes.
   - Count of claims for each `Claim_Type` and `Disposition`.
-- **Airport-Level Analysis**: Identifies airports with more than 10 million enplanements and lists them along with their respective percentage of claims.
+- **Airport-Level Analysis**: The program identifies airports with more than 10 million enplanements and lists them along with their respective percentage of claims. These insights are stored in the results file for further analysis.
 
----
+## Results File: [CaseStudy_Solution-results](CaseStudy_Solution-results.html)
+
+The results of all steps, including data previews, transformations, and final analysis, are stored in an HTML file named `CaseStudy_Solution-results.html`. This file contains:
+- Tables showing initial data from the `claimsraw`, `enplanement2017`, and `boarding2013_2016` datasets.
+- Column metadata from the dictionary of columns for all the relevant datasets.
+- Summary tables showing distinct values from key columns (e.g., `Claim_Type`, `Claim_Site`, etc.).
+- Results of data cleaning and transformation steps (e.g., fixing dates, handling missing values).
+- Summarized insights such as the total number of enplanements, claims, and analysis on claims by airport.
+
+You can view the output in the file after running the program in **SAS Studio** or your local environment. The file is located in the `/home/u62293126/SQL/case_study/` directory as `CaseStudy_Solution-results.html`. 
 
 ## Notes
-- The program uses SQL queries extensively for data manipulation and cleaning.
-- The final output of the analysis includes a cleaned dataset that can be used for further reporting or predictive analysis.
 - Ensure that all required datasets are present in the `/home/u62293126/SQL/case_study` directory for successful execution.
-
----
+- The program is organized into sections, beginning with data exploration, followed by cleaning, preparation, and analysis, to provide a clear structure for understanding the process flow.
